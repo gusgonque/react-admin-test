@@ -1,12 +1,36 @@
 import * as React from "react";
 import {Admin, Resource, ListGuesser} from 'react-admin';
-import simpleRestProvider from 'ra-data-simple-rest';
+import jsonServerProvider from 'ra-data-json-server';
+import PostIcon from '@mui/icons-material/Book';
 
-import Dashboard from '../Dashboard';
+import NotFound from "../NotFound";
+import Dashboard from "../Dashboard";
+import {EntityList} from "../EntityList";
+import {MyLayout} from "../Layout";
+
+//API site
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
 
 const App = () => (
-    <Admin dashboard={Dashboard} dataProvider={simpleRestProvider('https://jsonplaceholder.typicode.com/')}>
-        <Resource name="users" list={ListGuesser} />
+    <Admin
+        //Layout
+        layout={MyLayout}
+
+        //Not found page.
+        catchAll={NotFound}
+
+        //Default page
+        dashboard={Dashboard}
+
+        //API server
+        dataProvider={dataProvider}
+    >
+        <Resource name="Entity" list={EntityList} icon={PostIcon}/>
+        <Resource name="Documents" icon={PostIcon}/>
+        <Resource name="Tasks" list={ListGuesser} icon={PostIcon}/>
+        <Resource name="Boards" list={ListGuesser} icon={PostIcon}/>
+        <Resource name="Contracts" list={ListGuesser} icon={PostIcon}/>
+        <Resource name="Disputes" list={ListGuesser} icon={PostIcon}/>
     </Admin>
 );
 
