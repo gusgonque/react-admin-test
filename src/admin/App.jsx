@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Admin, Resource, ListGuesser} from 'react-admin';
+import {Admin, Resource, ListGuesser, TextField} from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import PostIcon from '@mui/icons-material/Book';
 
@@ -25,6 +25,7 @@ const App = () => (
         //API server
         dataProvider={dataProvider}
     >
+        <TextField source="author.name" label="Author" />
         <Resource name="Entity" list={EntityList} icon={PostIcon}/>
         <Resource name="Documents" icon={PostIcon}/>
         <Resource name="Tasks" list={ListGuesser} icon={PostIcon}/>
